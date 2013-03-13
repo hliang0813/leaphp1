@@ -1,0 +1,48 @@
+global
+824200001	Could not find global configure file.
+824200002	Could not find autoload class(es) library.
+824200003	Could not find router file.
+824200004	Unsigned controller.
+824200005	Unsigned action.
+824200006	Template(s) unactived.
+824200007	Could not find the business file.
+824200008	Could not find the model file.
+824200009	Could not file file.
+824200010	Could not find router rule.
+
+database
+824209001	Error on loading database configuration file.
+
+mysql database
+824209002	Could not connect to the database.
+824209003	Error on preparing sql template.
+824209004	Value(s) prepared to bind is not match.
+824209005	Error on bind single value to sql template.
+824209006	Execute sql error.
+824209007	Could not start transaction.
+824209008	Could not commit transaction.
+824209009	Could not execute sql query.
+824209010	SELECT query error while execute sql.
+824209011	Trying to query an empty sql.
+824209012	UPDATE query error while execute sql.
+824209013	DELETE query error while execute sql.
+824209014	INSERT query error while execute sql.
+
+autoload function
+824209015	Parameter(s) error while using autoload function(s).
+824209016	Autoload function(s) not found.
+
+redis cache
+824209017	Could not find Redis configure file.
+824209018	Could not find the right statuement in Redis configure file.
+
+memcache
+824209019	Could not find Cache configure file.\
+824209020	Could not find the right statuement in Cache configure file.
+
+log4php
+824209021	Could not find configure file for Log4php.
+
+LeapHTTP
+824209022	[HTTP request err msg]
+824209023	HTTP request response code is not 200.
