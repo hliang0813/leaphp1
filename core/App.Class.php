@@ -23,7 +23,7 @@ class App extends Base {
 	# 解析pathinfo
 	static private function parsePathinfo() {
 		# 解析pathinfo
-		if (PATHINFO === true) {	# pathinfo模式
+		if (defined('URLS')) {	# pathinfo模式
 			if (!file_exists(URLS)) {
 				throw new Exception('Could not find router file.', 824200003);
 			} else {
@@ -40,8 +40,8 @@ class App extends Base {
 				}
 			}
 		} else {	# 普通模式
-			self::$controller = isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'index';
-			self::$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'index';
+			self::$controller = isset($_REQUEST['ctl']) ? $_REQUEST['ctl'] : 'index';
+			self::$action = isset($_REQUEST['act']) ? $_REQUEST['act'] : 'index';
 		}
 
 		if (!isset(self::$controller) || !isset(self::$action)) {
