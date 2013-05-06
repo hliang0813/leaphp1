@@ -5,7 +5,7 @@
 作者：huang.liang@neusoft.com
 最后更新：2012-08-09
 */
-#error_reporting(0);
+error_reporting(7);
 
 session_start();
 header("Content-type: text/html; charset=utf-8");
@@ -80,6 +80,7 @@ function LeapClassAutoload($class_name) {
 		'Base' =>'',
 		'Copyright' => '',
 		'Model' => '',
+		'ORM' => '',
 		
 		'DataBase' => 'db' . DS,
 		'Db' => 'db' . DS,
