@@ -1569,6 +1569,64 @@ class Model
 		return $single ? (!empty($list) ? $list[0] : null) : $list;
 	}
 
+	// add by hliang @ 2013.05.06 22:19
+	public static function get(/* $type, $options */)
+	{
+		$class = get_called_class();
+
+		if (func_num_args() <= 0)
+			throw new RecordNotFound("Couldn't find $class without an ID");
+
+		$args = func_get_args();
+		$options = static::extract_and_validate_options($args);
+		$num_args = count($args);
+		$single = true;
+
+		if ($num_args > 0 && ($args[0] === 'all' || $args[0] === 'first' || $args[0] === 'last'))
+		{
+			switch ($args[0])
+			{
+				case 'all':
+					$single = false;
+					break;
+
+			 	case 'last':
+					if (!array_key_exists('order',$options))
+						$options['order'] = join(' DESC, ',static::table()->pk) . ' DESC';
+					else
+						$options['order'] = SQLBuilder::reverse_order($options['order']);
+
+					// fall thru
+
+			 	case 'first':
+			 		$options['limit'] = 1;
+			 		$options['offset'] = 0;
+			 		break;
+			}
+
+			$args = array_slice($args,1);
+			$num_args--;
+		}
+		//find by pk
+		elseif (1 === count($args) && 1 == $num_args)
+			$args = $args[0];
+
+		// anything left in $args is a find by pk
+		if ($num_args > 0 && !isset($options['conditions']))
+			return static::find_by_pk($args, $options);
+
+		$options['mapped_names'] = static::$alias_attribute;
+		$list = static::table()->find($options);
+
+		if (is_array($list)) {
+			$list = array_map(create_function('$ary', 'return $ary->attributes();'), $list);
+		}
+
+		return $single ? (!empty($list) ? $list[0] : null) : $list;
+	}
+
+
+
 	/**
 	 * Finder method which will find by a single or array of primary keys for this model.
 	 *
